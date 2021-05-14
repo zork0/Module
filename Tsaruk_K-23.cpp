@@ -90,7 +90,7 @@ int main() {
     
     for(int b = 0 ; b < 11 ; b++) {
         if (obj.test1(1)) {
-            cout << array[b] << " іваівавіаі";
+            cout << array[b] << " іваівавіаі DE INTERNET  dddsfsdfsff";
         };
     }
 
