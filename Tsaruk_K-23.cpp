@@ -1,80 +1,99 @@
-void BST ::Inorder(BST* root)
-{
-    if (!root) {
-        return;
-    }
-    Inorder(root->left);
-    cout << root->data << endl;
-    Inorder(root->right);
-}
- 
+Царук Р. М. К-23
+ВАРІАНТ 9
 
-template <typename T> class vectorClass{
-    // arr is the integer pointer
-    // which stores the address of our vector
-    T* arr;
-    int capacity;
+1.
+
+Мова програмування C++ дає можливість перехоплювати Exception (об'єкт однойменного вбудованого класу) та відповідним чином їх обробляти.
+
+Для перехоплень виключних ситуацій у C++ введено конструкцію try … catch:
+
+try {
+    // якщо тут виникло виключення з типом type, можливо з параметром (виняток можна згенерувати методом throw)
+}
+catch(type argument1)
+{
+    // то виконується цей код
+}
+
+Винятки стандартної бібліотеки. Наслідують від базового класу 
+
+ bad_alloc
+ bad_typeid
+ bad_exception
+ logic_failure
+	 length_error
+	 domain_error - відсутній доступ до елементу класу
+	 out_of_range
+	 invalid_argument
+ runtime_error
+	 overflow_error
+	 range_error
+ ...
  
-    // current is the number of elements
-    int current;
+ Спочатку порібно обробляти більш специфічні винятки, а тоді більш загальні (батьківські, вищих рівнів).
  
-public:
-    // Default constructor to initialise
-    // an initial capacity of 1 element and
-    // allocating storage using dynamic allocation
-    vectorClass() {
-        arr = new T[1];
-        capacity = 1;
-        current = 0;
+ 
+#include <iostream>
+#include <stdexcept>
+using namespace std;
+
+int main() {
+    try { 
+        throw std::overflow_error("text");
     }
- 
-    void push(T data) {
- 
-        // if the number of elements is equal to the
-        // capacity, that means we don't have space to
-        // accommodate more elements. We need to double the
-        // capacity
-        if (current == capacity) {
-            T* temp = new T[2 * capacity];
- 
-            // copying old array elements to new array
-            for (int i = 0; i < capacity; i++) {
-                temp[i] = arr[i];
-            }
- 
-            // deleting previous array
-            delete[] arr;
-            capacity *= 2;
-            arr = temp;
-        }
- 
-        arr[current] = data;
-        current++;
+    catch (std::overflow_error e) {
+        cout << "overflow_error";
     }
- 
-    void push(int data, int index) {
- 
-        // if index is equal to capacity then this
-        // function is same as push defined above
-        if (index == capacity)
-            push(data);
-        else
-            arr[index] = data;
+    catch (std::exception e) {
+        cout << "general";
     }
- 
-    // function to extract element at any index
-    T get(int index) {
-        if (index < current)
-            return arr[index];
-    }
- 
-    void pop() { current--; }
-    int size() { return current; }
-    int getcapacity() { return capacity; }
-    void print() {
-        for (int i = 0; i < current; i++) {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
+}
+
+2.
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+
+class Tester {
+   public:
+    bool test1(int x) {
+        return true;
     }
 };
+
+class A {
+   public:
+    bool test2(int x) {
+        return x > 0;
+    }
+};
+
+class B {
+   public:
+    bool test3(int x) {
+        return x*x > 10;
+    }
+};
+
+
+int main() {
+    Tester obj;
+    
+    int array[10];
+    
+    for(int i = 0 ; i < 11 ; i++) {
+        array[i] = i - 5;
+        cout << array[i] << endl;
+    }
+    
+    for(int b = 0 ; b < 11 ; b++) {
+        if (obj.test1(1)) {
+            cout << array[b] << " іваівавіаі";
+        };
+    }
+
+    return 0;
+} 
+
