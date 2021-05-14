@@ -58,41 +58,45 @@ using namespace std;
 
 class Tester {
    public:
-    bool test1(int x) {
+    bool test(int x) {
         return true;
     }
 };
 
-class A {
+class A: public Tester {
    public:
-    bool test2(int x) {
+    bool test(int x) {
         return x > 0;
     }
 };
 
-class B {
+class B: public Tester  {
    public:
-    bool test3(int x) {
+    bool test(int x) {
         return x*x > 10;
     }
 };
 
 
+
 int main() {
-    Tester obj;
+    A obj; // change here
     
     int array[10];
     
     for(int i = 0 ; i < 11 ; i++) {
         array[i] = i - 5;
-        cout << array[i] << endl;
-    }
+        cout << array[i] << " ";
+    };
     
-    for(int b = 0 ; b < 11 ; b++) {
-        if (obj.test1(1)) {
-            cout << array[b] << " іваівавіаі DE INTERNET  dddsfsdfsff";
+    cout << endl;
+    
+    for(int i = 0 ; i < 11 ; i++) {
+        if (obj.test(array[i])) {
+            cout << array[i] << " ";
         };
     }
+
 
     return 0;
 } 
