@@ -96,7 +96,7 @@ int main() {
 using namespace std;
 
 int search(char a) { 
-    int n;
+    int n{};
     string str;
 	fstream file("text.txt");
     while (getline (file, str)) {
@@ -108,13 +108,13 @@ int search(char a) {
     return n;
 }
 
-
- 
 int main() {
-    char s[] = "abc";
+    char s[] = "abc"; // xyz - specify here all characters you need to count
+    int c;
     int n = sizeof(s)/sizeof(s[0]); 
-    for (int i = 0; i < n; i++) {
-        cout << s[i] << ":" << search(s[i]) << endl;
+    for (int i = 0; i < n-1; i++) {
+        c = search(s[i]);
+        cout << s[i] << ":" << c << " ";
     }
     return 0;
 }
