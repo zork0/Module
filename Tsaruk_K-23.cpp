@@ -88,3 +88,33 @@ int main() {
 
 Поліморфізм
     Поліморфізм означає примінимість операції для різних типів даних. Цей ж самий механізм дозволяє викликати різні, хоч і однойменні методи для кожного обєкта в залежності від його класу.
+	
+3.
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+int search(char a) { 
+    int n;
+    string str;
+	fstream file("text.txt");
+    while (getline (file, str)) {
+        for (int i = 0; i < str.length(); i++) {
+            if (str[i] == a) n++;
+        }
+    }
+    file.close();
+    return n;
+}
+
+
+ 
+int main() {
+    char s[] = "abc";
+    int n = sizeof(s)/sizeof(s[0]); 
+    for (int i = 0; i < n; i++) {
+        cout << s[i] << ":" << search(s[i]) << endl;
+    }
+    return 0;
+}
