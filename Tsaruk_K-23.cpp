@@ -118,3 +118,26 @@ int main() {
     }
     return 0;
 }
+
+4.
+import unittest
+
+def suma(arr):
+    s = 0;
+    for i in arr:
+        s += i;
+    return s
+
+class TestSum(unittest.TestCase):
+    def test_list_int(self):
+        data = [1, 2, 3]
+        result = suma(data)
+        self.assertEqual(result, 6)
+        
+    def test_tuple_int(self):
+        data = (1, 2)
+        result = suma(data)
+        self.assertEqual(result, 3)
+        
+if __name__ == '__main__':
+    unittest.main()
